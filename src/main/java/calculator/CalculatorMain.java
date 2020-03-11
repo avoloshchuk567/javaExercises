@@ -22,7 +22,7 @@ public class CalculatorMain {
 
         double result = calculation.calculateResult(operation, operand1, operand2).getResult();
 
-        LOGGER.info(operand1 + " " + operation + " " + operand2 + " = " + result);
+        LOGGER.info(String.format("%s %s %s = %s", operand1, operation, operand2, result));
 
         putResultIntoOutputFile.writeResultToFile(operation, operand1, operand2, result);
     }
