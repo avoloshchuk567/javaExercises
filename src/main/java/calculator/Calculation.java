@@ -2,8 +2,8 @@ package calculator;
 
 public class Calculation {
 
-    public double calculateResult(char operation, double operand1, double operand2) {
-        double result = 0;
+    public Result calculateResult(char operation, double operand1, double operand2) {
+        double result;
         switch (operation) {
             case '+': {
                 result = operand1 + operand2;
@@ -18,19 +18,13 @@ public class Calculation {
                 break;
             }
             case '/': {
-                try {
-                    result = operand1 / operand2;
-                } catch (Exception e) {
-                    System.out.println("Division by zero" + e);
-                }
+                result = operand1 / operand2;
                 break;
-
             }
             default: {
-                System.out.println("Operation " + operation + " doesn't exist");
-                result = -1;
+                throw new java.lang.RuntimeException("Operation is not supported");
             }
         }
-        return result;
+        return new Result(result);
     }
 }

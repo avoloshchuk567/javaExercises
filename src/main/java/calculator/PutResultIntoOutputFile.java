@@ -1,9 +1,12 @@
 package calculator;
 
+import org.slf4j.*;
+
 import java.io.*;
 import java.util.*;
 
 public class PutResultIntoOutputFile {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PutResultIntoOutputFile.class);
     private String filePath;
 
     public PutResultIntoOutputFile(String filePath) {
@@ -20,14 +23,13 @@ public class PutResultIntoOutputFile {
         list.add(equalsSign);
         list.add(result);
 
-        try {
-            FileWriter fileWriter = new FileWriter(new File(filePath));
+        try (FileWriter fileWriter = new FileWriter(new File(filePath))) {
             for (Object object : list) {
                 fileWriter.write(object + System.getProperty("line.separator"));
             }
-            fileWriter.close();
+//            fileWriter.close();
         } catch (IOException e) {
-            System.out.println("File not found " + e);
+            LOGGER.error("File not found " + e);
         }
     }
 }
