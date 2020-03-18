@@ -16,16 +16,16 @@ public class FibonacciSequenceTest {
     @DataProvider
     public static Object[][] data() {
         return new Object[][]{
-                {10, new Integer[]{1, 1, 2, 3, 5, 8, 13, 21, 34, 55}},
-                {1, new Integer[]{1}},
-                {2, new Integer[]{1, 1}},
+                {new Integer[]{1, 1, 2, 3, 5, 8, 13, 21, 34, 55}},
+                {new Integer[]{1}},
+                {new Integer[]{1, 1}},
         };
     }
 
     @Test
     @UseDataProvider("data")
-    public void sequenceOfTen(int number, Integer[] list) {
-        assertThat(definition.defineFibonacciSequence(number), Matchers.contains(list));
+    public void sequenceOfTen(Integer[] list) {
+        assertThat(definition.defineFibonacciSequence(list.length), Matchers.contains(list));
     }
 
     @Test
