@@ -36,7 +36,7 @@ public class PrimeNumbersDefinition {
 //        return (numbersCounter == 0);
         return (IntStream.range(2, number)
                 .filter(i -> number % i == 0)
-                .limit(number)
+//                .limit(number)
                 .count()) == 0;
     }
 }
