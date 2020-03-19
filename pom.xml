@@ -12,6 +12,7 @@
         <junitVersion>4.12</junitVersion>
         <logbackVersion>1.2.3</logbackVersion>
         <hamcrestVersion>1.3</hamcrestVersion>
+        <junitDataproviderVersion>1.13.1</junitDataproviderVersion>
         <maven.compiler.source>1.13</maven.compiler.source>
         <maven.compiler.target>1.13</maven.compiler.target>
     </properties>
@@ -36,7 +37,14 @@
             <version>${hamcrestVersion}</version>
             <scope>test</scope>
         </dependency>
-        
+
+        <dependency>
+            <groupId>com.tngtech.java</groupId>
+            <artifactId>junit-dataprovider</artifactId>
+            <version>${junitDataproviderVersion}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
