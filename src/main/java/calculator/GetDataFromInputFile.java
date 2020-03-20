@@ -3,6 +3,9 @@ package calculator;
 import org.slf4j.*;
 
 import java.io.*;
+import java.nio.file.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GetDataFromInputFile {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetDataFromInputFile.class);
@@ -16,7 +19,7 @@ public class GetDataFromInputFile {
     }
 
     public void readDataFromFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filePath)));
+        /*try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filePath)));
         ) {
             StringBuilder rawDataFromFile = new StringBuilder();
             String line;
@@ -38,7 +41,23 @@ public class GetDataFromInputFile {
 //            bufferedReader.close();
         } catch (
                 IOException e) {
-            LOGGER.error("File not found " + e);
+            LOGGER.error("File not found \n" + e);
+        }*/
+        try {
+            List<String> dataFromFile = Files.lines(Paths.get(filePath)).collect(Collectors.toList());
+            try {
+                operand1 = Double.parseDouble(dataFromFile.get(1));
+                operand2 = Double.parseDouble(dataFromFile.get(2));
+            } catch (NumberFormatException e) {
+                LOGGER.error("Operand1 or Operand2 is incorrect \n" + e);
+            }
+            try {
+                operation = dataFromFile.get(0).charAt(0);
+            } catch (StringIndexOutOfBoundsException e) {
+                LOGGER.error("Operation is incorrect \n" + e);
+            }
+        } catch (IOException e) {
+            LOGGER.error("File not found \n" + e);
         }
     }
 
