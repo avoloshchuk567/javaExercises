@@ -6,8 +6,6 @@ import org.junit.runner.*;
 import vampireNumbers.Permutation;
 import vampireNumbers.VampireNumbersDefinition;
 
-import java.util.*;
-
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -44,13 +42,6 @@ public class VampireNumbersTest {
     @Test
     public void permutationTest() {
         Permutation.permute(new char[]{'1', '2', '6', '0'});
-        Set<String> result = Permutation.getResult();
-        Iterator<String> iterator = result.iterator();
-        int numberInResult = 0;
-        while (iterator.hasNext()) {
-            iterator.next();
-            numberInResult++;
-        }
-        assertThat(numberInResult, is(24));
+        assertThat((Permutation.getResult()).size(), is(24));
     }
 }

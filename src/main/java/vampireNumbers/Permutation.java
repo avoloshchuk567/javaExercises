@@ -17,7 +17,7 @@ public class Permutation {
 
     private static void permute(char[] a, int n) {
         if (n == 1) {
-//           LOGGER.debug(new String(a));
+            LOGGER.trace(new String(a));
             result.add(new String(a));
             return;
         }
