@@ -1,35 +1,30 @@
 package calculatorTests;
 
 import calculator.*;
+import com.tngtech.java.junit.dataprovider.*;
 import org.junit.*;
+import org.junit.runner.RunWith;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+@RunWith(DataProviderRunner.class)
 public class CalculatorOperationsTest {
     Calculation calculation = new Calculation();
 
-    @Test
-    public void addition() {
-        double result = calculation.calculateResult('+', 10.0, 5).getResult();
-        assertThat(result, equalTo(15.0));
+    @DataProvider
+    public static Object[][] calculateData() {
+        return new Object[][]{
+                {'+', 10.0, 5, 15.0},
+                {'-', 100.0, 99, 1.0},
+                {'*', 100.0, 100, 10000.0},
+                {'/', 18.6, 3, 6.2}
+        };
     }
 
     @Test
-    public void subtraction() {
-        double result = calculation.calculateResult('-', 100.0, 99).getResult();
-        assertThat(result, equalTo(1.0));
-    }
-
-    @Test
-    public void multiplication() {
-        double result = calculation.calculateResult('*', 100.0, 100).getResult();
-        assertThat(result, equalTo(10000.0));
-    }
-
-    @Test
-    public void division() {
-        double result = calculation.calculateResult('/', 18.6, 3).getResult();
-        assertThat(result, equalTo(6.2));
+    @UseDataProvider("calculateData")
+    public void calculationTest(char operation, double operand1, double operand2, double result) {
+        assertThat(calculation.calculateResult(operation, operand1, operand2).getResult(), equalTo(result));
     }
 }
